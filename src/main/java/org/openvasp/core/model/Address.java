@@ -115,7 +115,7 @@ public class Address {
   @SerializedName(SERIALIZED_NAME_ROOM)
   private String room;
 
-  public static final String SERIALIZED_NAME_POST_CODE = "postCode";
+  public static final String SERIALIZED_NAME_POST_CODE = "postcode";
   @SerializedName(SERIALIZED_NAME_POST_CODE)
   private String postCode;
 

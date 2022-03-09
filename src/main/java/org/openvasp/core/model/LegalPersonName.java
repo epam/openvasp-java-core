@@ -26,7 +26,7 @@ import java.util.List;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-05T14:32:36.025401+02:00[Europe/Kiev]")
 public class LegalPersonName {
-  public static final String SERIALIZED_NAME_NAME_IDENTIFIERS = "nameIdentifiers";
+  public static final String SERIALIZED_NAME_NAME_IDENTIFIERS = "nameIdentifier";
   @SerializedName(SERIALIZED_NAME_NAME_IDENTIFIERS)
   private List<LegalPersonNameId> nameIdentifiers = null;
 

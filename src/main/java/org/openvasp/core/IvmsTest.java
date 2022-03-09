@@ -25,28 +25,14 @@ public class IvmsTest {
         address.setCountrySubDivision("California");
         address.setCountry("US");
 
-        // another name id for originator
-        LocalNaturalPersonNameId orgNameIdLocal = new LocalNaturalPersonNameId();
-        orgNameIdLocal.setPrimaryIdentifier("吳");
-        orgNameIdLocal.setSecondaryIdentifier("信利");
-        orgNameIdLocal.setNameIdentifierType(LocalNaturalPersonNameId.NameIdentifierTypeEnum.LEGL);
-
         // assign two name id to originator name
         NaturalPersonName orgPersonName = new NaturalPersonName();
         orgPersonName.addNameIdentifiersItem(orgNameId);
-        orgPersonName.addLocalNameIdentifiersItem(orgNameIdLocal);
 
-        // originator national id and data
-        NationalIdentification orgPersonNationalId = new NationalIdentification();
-        orgPersonNationalId.setNationalIdentifier("446005");
-        orgPersonNationalId.setNationalIdentifierType(NationalIdentification.NationalIdentifierTypeEnum.RAID);
-        orgPersonNationalId.setRegistrationAuthority("RA000553");
 
         // assign name, national id, country to originator natural person
         NaturalPerson originatingNaturalPerson = new NaturalPerson();
         originatingNaturalPerson.setName(orgPersonName);
-        originatingNaturalPerson.setNationalIdentification(orgPersonNationalId);
-        originatingNaturalPerson.setCountryOfResidence("TZ");
         originatingNaturalPerson.addGeographicAddressesItem(address);
         originatingNaturalPerson.setCustomerIdentification("1002390");
 
@@ -94,10 +80,26 @@ public class IvmsTest {
         Person beneficiary2Person = new Person();
         beneficiary2Person.setLegalPerson(beneficiary2LegalPerson);
 
+        NaturalPersonNameId benNameId = new NaturalPersonNameId();
+        benNameId.setPrimaryIdentifier("MachuPichu");
+        benNameId.setSecondaryIdentifier("Freddie");
+        benNameId.setNameIdentifierType(NaturalPersonNameId.NameIdentifierTypeEnum.LEGL);
+
+        // assign two name id to originator name
+        NaturalPersonName benPersonName = new NaturalPersonName();
+        benPersonName.addNameIdentifiersItem(benNameId);
+
+        // assign name, national id, country to originator natural person
+        NaturalPerson benNaturalPerson = new NaturalPerson();
+        benNaturalPerson.setName(benPersonName);
+
+        // assign originator to person object
+        Person benPerson = new Person();
+        benPerson.setNaturalPerson(benNaturalPerson);
+
         // assign both persons to beneficiary object
         Beneficiary beneficiary = new Beneficiary();
-        beneficiary.addBeneficiaryPersonsItem(beneficiary1Person);
-        beneficiary.addBeneficiaryPersonsItem(beneficiary2Person);
+        beneficiary.addBeneficiaryPersonsItem(benPerson);
         beneficiary.addAccountNumbersItem("1BVMFfPXJy2TY1x6wm8gow3N5Amw4Etm5h");
 
         // orginator 1 name id
