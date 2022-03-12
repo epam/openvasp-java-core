@@ -1,7 +1,5 @@
 # OpenVASP Java Core
 
-[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/OpenVASP/openvasp-java-client)
-
 This is a reference implementation of a Java core library for the OpenVASP standard.
 
 
