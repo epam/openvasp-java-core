@@ -11,7 +11,7 @@
  */
 
 
-package org.openvasp.core.model;
+package org.openvasp.core.model.ivms101;
 
 import java.util.Objects;
 
@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * OriginatingVasp
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-05T14:32:36.025401+02:00[Europe/Kiev]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class OriginatingVasp {
   public static final String SERIALIZED_NAME_ORIGINATING_VASP = "originatingVASP2";
   @SerializedName(SERIALIZED_NAME_ORIGINATING_VASP)

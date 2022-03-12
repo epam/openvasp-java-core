@@ -11,7 +11,7 @@
  */
 
 
-package org.openvasp.core.model;
+package org.openvasp.core.model.ivms101;
 
 import java.util.Objects;
 
@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * Address
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-05T14:32:36.025401+02:00[Europe/Kiev]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Address {
   /**
    * Gets or Sets addressType

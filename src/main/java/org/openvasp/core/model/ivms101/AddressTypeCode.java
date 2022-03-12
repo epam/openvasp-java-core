@@ -11,7 +11,7 @@
  */
 
 
-package org.openvasp.core.model;
+package org.openvasp.core.model.ivms101;
 
 import java.io.IOException;
 import com.google.gson.TypeAdapter;
@@ -20,40 +20,20 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets TransliterationMethodCode
+ * Gets or Sets AddressTypeCode
  */
-@JsonAdapter(TransliterationMethodCode.Adapter.class)
-public enum TransliterationMethodCode {
+@JsonAdapter(AddressTypeCode.Adapter.class)
+public enum AddressTypeCode {
   
-  ARAB("ARAB"),
+  HOME("HOME"),
   
-  ARAN("ARAN"),
+  BIZZ("BIZZ"),
   
-  ARMN("ARMN"),
-  
-  CYRL("CYRL"),
-  
-  DEVA("DEVA"),
-  
-  GEOR("GEOR"),
-  
-  GREK("GREK"),
-  
-  HANI("HANI"),
-  
-  HEBR("HEBR"),
-  
-  KANA("KANA"),
-  
-  KORE("KORE"),
-  
-  THAI("THAI"),
-  
-  OTHR("OTHR");
+  GEOG("GEOG");
 
   private String value;
 
-  TransliterationMethodCode(String value) {
+  AddressTypeCode(String value) {
     this.value = value;
   }
 
@@ -66,8 +46,8 @@ public enum TransliterationMethodCode {
     return String.valueOf(value);
   }
 
-  public static TransliterationMethodCode fromValue(String value) {
-    for (TransliterationMethodCode b : TransliterationMethodCode.values()) {
+  public static AddressTypeCode fromValue(String value) {
+    for (AddressTypeCode b : AddressTypeCode.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -75,16 +55,16 @@ public enum TransliterationMethodCode {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<TransliterationMethodCode> {
+  public static class Adapter extends TypeAdapter<AddressTypeCode> {
     @Override
-    public void write(final JsonWriter jsonWriter, final TransliterationMethodCode enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final AddressTypeCode enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public TransliterationMethodCode read(final JsonReader jsonReader) throws IOException {
+    public AddressTypeCode read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return TransliterationMethodCode.fromValue(value);
+      return AddressTypeCode.fromValue(value);
     }
   }
 }

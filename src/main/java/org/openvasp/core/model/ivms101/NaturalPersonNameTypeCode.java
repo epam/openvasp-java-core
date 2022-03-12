@@ -11,7 +11,7 @@
  */
 
 
-package org.openvasp.core.model;
+package org.openvasp.core.model.ivms101;
 
 import java.io.IOException;
 import com.google.gson.TypeAdapter;
@@ -20,20 +20,24 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets LegalPersonNameTypeCode
+ * Gets or Sets NaturalPersonNameTypeCode
  */
-@JsonAdapter(LegalPersonNameTypeCode.Adapter.class)
-public enum LegalPersonNameTypeCode {
+@JsonAdapter(NaturalPersonNameTypeCode.Adapter.class)
+public enum NaturalPersonNameTypeCode {
+  
+  ALIA("ALIA"),
+  
+  BIRT("BIRT"),
+  
+  MAID("MAID"),
   
   LEGL("LEGL"),
   
-  SHRT("SHRT"),
-  
-  TRAD("TRAD");
+  MISC("MISC");
 
   private String value;
 
-  LegalPersonNameTypeCode(String value) {
+  NaturalPersonNameTypeCode(String value) {
     this.value = value;
   }
 
@@ -46,8 +50,8 @@ public enum LegalPersonNameTypeCode {
     return String.valueOf(value);
   }
 
-  public static LegalPersonNameTypeCode fromValue(String value) {
-    for (LegalPersonNameTypeCode b : LegalPersonNameTypeCode.values()) {
+  public static NaturalPersonNameTypeCode fromValue(String value) {
+    for (NaturalPersonNameTypeCode b : NaturalPersonNameTypeCode.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -55,16 +59,16 @@ public enum LegalPersonNameTypeCode {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<LegalPersonNameTypeCode> {
+  public static class Adapter extends TypeAdapter<NaturalPersonNameTypeCode> {
     @Override
-    public void write(final JsonWriter jsonWriter, final LegalPersonNameTypeCode enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final NaturalPersonNameTypeCode enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public LegalPersonNameTypeCode read(final JsonReader jsonReader) throws IOException {
+    public NaturalPersonNameTypeCode read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return LegalPersonNameTypeCode.fromValue(value);
+      return NaturalPersonNameTypeCode.fromValue(value);
     }
   }
 }

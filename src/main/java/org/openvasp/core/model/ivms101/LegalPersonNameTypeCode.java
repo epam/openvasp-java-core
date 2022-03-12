@@ -11,7 +11,7 @@
  */
 
 
-package org.openvasp.core.model;
+package org.openvasp.core.model.ivms101;
 
 import java.io.IOException;
 import com.google.gson.TypeAdapter;
@@ -20,34 +20,20 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets NationalIdentifierTypeCode
+ * Gets or Sets LegalPersonNameTypeCode
  */
-@JsonAdapter(NationalIdentifierTypeCode.Adapter.class)
-public enum NationalIdentifierTypeCode {
+@JsonAdapter(LegalPersonNameTypeCode.Adapter.class)
+public enum LegalPersonNameTypeCode {
   
-  ARNU("ARNU"),
+  LEGL("LEGL"),
   
-  CCPT("CCPT"),
+  SHRT("SHRT"),
   
-  RAID("RAID"),
-  
-  DRLC("DRLC"),
-  
-  FIIN("FIIN"),
-  
-  TXID("TXID"),
-  
-  SOCS("SOCS"),
-  
-  IDCD("IDCD"),
-  
-  LEIX("LEIX"),
-  
-  MISC("MISC");
+  TRAD("TRAD");
 
   private String value;
 
-  NationalIdentifierTypeCode(String value) {
+  LegalPersonNameTypeCode(String value) {
     this.value = value;
   }
 
@@ -60,8 +46,8 @@ public enum NationalIdentifierTypeCode {
     return String.valueOf(value);
   }
 
-  public static NationalIdentifierTypeCode fromValue(String value) {
-    for (NationalIdentifierTypeCode b : NationalIdentifierTypeCode.values()) {
+  public static LegalPersonNameTypeCode fromValue(String value) {
+    for (LegalPersonNameTypeCode b : LegalPersonNameTypeCode.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -69,16 +55,16 @@ public enum NationalIdentifierTypeCode {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<NationalIdentifierTypeCode> {
+  public static class Adapter extends TypeAdapter<LegalPersonNameTypeCode> {
     @Override
-    public void write(final JsonWriter jsonWriter, final NationalIdentifierTypeCode enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final LegalPersonNameTypeCode enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public NationalIdentifierTypeCode read(final JsonReader jsonReader) throws IOException {
+    public LegalPersonNameTypeCode read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return NationalIdentifierTypeCode.fromValue(value);
+      return LegalPersonNameTypeCode.fromValue(value);
     }
   }
 }

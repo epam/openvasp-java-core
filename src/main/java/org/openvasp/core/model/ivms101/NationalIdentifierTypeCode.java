@@ -11,7 +11,7 @@
  */
 
 
-package org.openvasp.core.model;
+package org.openvasp.core.model.ivms101;
 
 import java.io.IOException;
 import com.google.gson.TypeAdapter;
@@ -20,20 +20,34 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets AddressTypeCode
+ * Gets or Sets NationalIdentifierTypeCode
  */
-@JsonAdapter(AddressTypeCode.Adapter.class)
-public enum AddressTypeCode {
+@JsonAdapter(NationalIdentifierTypeCode.Adapter.class)
+public enum NationalIdentifierTypeCode {
   
-  HOME("HOME"),
+  ARNU("ARNU"),
   
-  BIZZ("BIZZ"),
+  CCPT("CCPT"),
   
-  GEOG("GEOG");
+  RAID("RAID"),
+  
+  DRLC("DRLC"),
+  
+  FIIN("FIIN"),
+  
+  TXID("TXID"),
+  
+  SOCS("SOCS"),
+  
+  IDCD("IDCD"),
+  
+  LEIX("LEIX"),
+  
+  MISC("MISC");
 
   private String value;
 
-  AddressTypeCode(String value) {
+  NationalIdentifierTypeCode(String value) {
     this.value = value;
   }
 
@@ -46,8 +60,8 @@ public enum AddressTypeCode {
     return String.valueOf(value);
   }
 
-  public static AddressTypeCode fromValue(String value) {
-    for (AddressTypeCode b : AddressTypeCode.values()) {
+  public static NationalIdentifierTypeCode fromValue(String value) {
+    for (NationalIdentifierTypeCode b : NationalIdentifierTypeCode.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -55,16 +69,16 @@ public enum AddressTypeCode {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<AddressTypeCode> {
+  public static class Adapter extends TypeAdapter<NationalIdentifierTypeCode> {
     @Override
-    public void write(final JsonWriter jsonWriter, final AddressTypeCode enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final NationalIdentifierTypeCode enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public AddressTypeCode read(final JsonReader jsonReader) throws IOException {
+    public NationalIdentifierTypeCode read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return AddressTypeCode.fromValue(value);
+      return NationalIdentifierTypeCode.fromValue(value);
     }
   }
 }

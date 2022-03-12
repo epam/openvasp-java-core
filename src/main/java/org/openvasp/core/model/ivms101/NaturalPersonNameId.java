@@ -11,7 +11,7 @@
  */
 
 
-package org.openvasp.core.model;
+package org.openvasp.core.model.ivms101;
 
 import java.util.Objects;
 
@@ -24,10 +24,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * LocalNaturalPersonNameId
+ * NaturalPersonNameId
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-05T14:32:36.025401+02:00[Europe/Kiev]")
-public class LocalNaturalPersonNameId {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+public class NaturalPersonNameId {
   public static final String SERIALIZED_NAME_PRIMARY_IDENTIFIER = "primaryIdentifier";
   @SerializedName(SERIALIZED_NAME_PRIMARY_IDENTIFIER)
   private String primaryIdentifier;
@@ -94,7 +94,7 @@ public class LocalNaturalPersonNameId {
   private NameIdentifierTypeEnum nameIdentifierType;
 
 
-  public LocalNaturalPersonNameId primaryIdentifier(String primaryIdentifier) {
+  public NaturalPersonNameId primaryIdentifier(String primaryIdentifier) {
     
     this.primaryIdentifier = primaryIdentifier;
     return this;
@@ -117,7 +117,7 @@ public class LocalNaturalPersonNameId {
   }
 
 
-  public LocalNaturalPersonNameId secondaryIdentifier(String secondaryIdentifier) {
+  public NaturalPersonNameId secondaryIdentifier(String secondaryIdentifier) {
     
     this.secondaryIdentifier = secondaryIdentifier;
     return this;
@@ -140,7 +140,7 @@ public class LocalNaturalPersonNameId {
   }
 
 
-  public LocalNaturalPersonNameId nameIdentifierType(NameIdentifierTypeEnum nameIdentifierType) {
+  public NaturalPersonNameId nameIdentifierType(NameIdentifierTypeEnum nameIdentifierType) {
     
     this.nameIdentifierType = nameIdentifierType;
     return this;
@@ -171,10 +171,10 @@ public class LocalNaturalPersonNameId {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    LocalNaturalPersonNameId localNaturalPersonNameId = (LocalNaturalPersonNameId) o;
-    return Objects.equals(this.primaryIdentifier, localNaturalPersonNameId.primaryIdentifier) &&
-        Objects.equals(this.secondaryIdentifier, localNaturalPersonNameId.secondaryIdentifier) &&
-        Objects.equals(this.nameIdentifierType, localNaturalPersonNameId.nameIdentifierType);
+    NaturalPersonNameId naturalPersonNameId = (NaturalPersonNameId) o;
+    return Objects.equals(this.primaryIdentifier, naturalPersonNameId.primaryIdentifier) &&
+        Objects.equals(this.secondaryIdentifier, naturalPersonNameId.secondaryIdentifier) &&
+        Objects.equals(this.nameIdentifierType, naturalPersonNameId.nameIdentifierType);
   }
 
   @Override
@@ -185,7 +185,7 @@ public class LocalNaturalPersonNameId {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class LocalNaturalPersonNameId {\n");
+    sb.append("class NaturalPersonNameId {\n");
     sb.append("    primaryIdentifier: ").append(toIndentedString(primaryIdentifier)).append("\n");
     sb.append("    secondaryIdentifier: ").append(toIndentedString(secondaryIdentifier)).append("\n");
     sb.append("    nameIdentifierType: ").append(toIndentedString(nameIdentifierType)).append("\n");

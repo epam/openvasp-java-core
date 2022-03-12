@@ -11,7 +11,7 @@
  */
 
 
-package org.openvasp.core.model;
+package org.openvasp.core.model.ivms101;
 
 import java.io.IOException;
 import com.google.gson.TypeAdapter;
@@ -20,24 +20,40 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets NaturalPersonNameTypeCode
+ * Gets or Sets TransliterationMethodCode
  */
-@JsonAdapter(NaturalPersonNameTypeCode.Adapter.class)
-public enum NaturalPersonNameTypeCode {
+@JsonAdapter(TransliterationMethodCode.Adapter.class)
+public enum TransliterationMethodCode {
   
-  ALIA("ALIA"),
+  ARAB("ARAB"),
   
-  BIRT("BIRT"),
+  ARAN("ARAN"),
   
-  MAID("MAID"),
+  ARMN("ARMN"),
   
-  LEGL("LEGL"),
+  CYRL("CYRL"),
   
-  MISC("MISC");
+  DEVA("DEVA"),
+  
+  GEOR("GEOR"),
+  
+  GREK("GREK"),
+  
+  HANI("HANI"),
+  
+  HEBR("HEBR"),
+  
+  KANA("KANA"),
+  
+  KORE("KORE"),
+  
+  THAI("THAI"),
+  
+  OTHR("OTHR");
 
   private String value;
 
-  NaturalPersonNameTypeCode(String value) {
+  TransliterationMethodCode(String value) {
     this.value = value;
   }
 
@@ -50,8 +66,8 @@ public enum NaturalPersonNameTypeCode {
     return String.valueOf(value);
   }
 
-  public static NaturalPersonNameTypeCode fromValue(String value) {
-    for (NaturalPersonNameTypeCode b : NaturalPersonNameTypeCode.values()) {
+  public static TransliterationMethodCode fromValue(String value) {
+    for (TransliterationMethodCode b : TransliterationMethodCode.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -59,16 +75,16 @@ public enum NaturalPersonNameTypeCode {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<NaturalPersonNameTypeCode> {
+  public static class Adapter extends TypeAdapter<TransliterationMethodCode> {
     @Override
-    public void write(final JsonWriter jsonWriter, final NaturalPersonNameTypeCode enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final TransliterationMethodCode enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public NaturalPersonNameTypeCode read(final JsonReader jsonReader) throws IOException {
+    public TransliterationMethodCode read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return NaturalPersonNameTypeCode.fromValue(value);
+      return TransliterationMethodCode.fromValue(value);
     }
   }
 }
