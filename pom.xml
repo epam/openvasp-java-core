@@ -25,6 +25,7 @@
         <findbugs.version>3.0.2</findbugs.version>
         <mojo.version>3.3.0</mojo.version>
         <surefire.version>2.22.0</surefire.version>
+        <bitcoinj.version>0.16.1</bitcoinj.version>
     </properties>
     <dependencies>
         <dependency>
@@ -110,6 +111,11 @@
             <artifactId>junit</artifactId>
             <version>RELEASE</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.bitcoinj</groupId>
+            <artifactId>bitcoinj-core</artifactId>
+            <version>${bitcoinj.version}</version>
         </dependency>
     </dependencies>
     <build>

@@ -111,12 +111,12 @@ public class Ivms101Test {
         beneficiary.addBeneficiaryPersonsItem(benPerson);
         beneficiary.addAccountNumbersItem("1BVMFfPXJy2TY1x6wm8gow3N5Amw4Etm5h");
 
-        // orginator 1 name id
+        // originator 1 name id
         LegalPersonNameId origi1NameId = new LegalPersonNameId();
         origi1NameId.setLegalPersonName("VASP A");
         origi1NameId.setLegalPersonNameIdentifierType(LegalPersonNameId.LegalPersonNameIdentifierTypeEnum.LEGL);
 
-        // assign orginator 1 name with id
+        // assign originator 1 name with id
         LegalPersonName origi1PersonName = new LegalPersonName();
         origi1PersonName.addNameIdentifiersItem(origi1NameId);
 
@@ -125,20 +125,20 @@ public class Ivms101Test {
         nationalIdentification.setNationalIdentifier("506700T7Z685VUOZL877");
         nationalIdentification.setNationalIdentifierType(NationalIdentification.NationalIdentifierTypeEnum.LEIX);
 
-        // orginator 1 is a legal person
-        LegalPerson orginator1LegalPerson = new LegalPerson();
-        orginator1LegalPerson.setName(origi1PersonName);
-        orginator1LegalPerson.setNationalIdentification(nationalIdentification);
+        // originator 1 is a legal person
+        LegalPerson originator1LegalPerson = new LegalPerson();
+        originator1LegalPerson.setName(origi1PersonName);
+        originator1LegalPerson.setNationalIdentification(nationalIdentification);
 
-        // assign orginator 1 to person object
-        Person orginator1Person = new Person();
-        orginator1Person.setLegalPerson(orginator1LegalPerson);
+        // assign originator 1 to person object
+        Person originator1Person = new Person();
+        originator1Person.setLegalPerson(originator1LegalPerson);
 
         // assign originator and beneficiary data to identity payload
         IdentityPayload privateInfo = new IdentityPayload();
         privateInfo.setOriginator(originator);
         privateInfo.setBeneficiary(beneficiary);
-        privateInfo.setOriginatingVasp(orginator1Person);
+        privateInfo.setOriginatingVasp(originator1Person);
 
         Ivms101 ivms1 = new Ivms101();
         ivms1.setIdentityPayload(privateInfo);
