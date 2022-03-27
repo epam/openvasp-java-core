@@ -1,64 +1,45 @@
 package org.openvasp.core.lnurl;
 
-import org.bitcoinj.core.Bech32;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Random;
 
 
 /**
- * Server class encapsulates LNURL server work.
+ * Lnurl service class for generating, encoding/decodings LNURLs.
  * Details: https://github.com/fiatjaf/lnurl-rfc
  *
  * JavaScript's implementation: https://www.npmjs.com/package/lnurl
  *
  * Bech32 specification: https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki#Bech32
  * Library for work with Bech32: https://github.com/bitcoinj/bitcoinj
+ *
+ * Online encoder/decoder https://lnurl.fiatjaf.com/codec/
  */
-public class Server {
-    // Server host.
-    private final String host;
-    // Server port.
-    private final Integer port;
-
-    /**
-     * Constructor with host and port.
-     * @param host Server host name.
-     * @param port Server port.
-     */
-    public Server(String host, Integer port) {
-        this.host = host;
-        this.port = port;
-    }
-
-    /**
-     * Constructor for empty port.
-     * @param host Server host name.
-     */
-    public Server(String host) {
-        this(host, null);
-    }
+public class Lnurl {
 
     /**
      * Generate new LNURL.
+     * @param host Server host.
+     * @param port Server port.
      * @return Newly generated LNURL.
      */
-    public String generateNewUrl() {
-        String secret = getRandomHexString(12);
+    public static String generateNewUrl(String host, String port) {
+        String secret = Lnurl.getRandomHexString(12);
         if (port != null) {
-            return String.format("https://%s:%d/api?q=%s", host, port, secret);
+            return String.format("http://%s:%s/api/lnurl?q=%s&tag=travelRuleInquiry", host, port, secret);
         }
-        return String.format("https://%s/api?q=%s", host, secret);
+        return String.format("http://%s/api/lnurl?q=%s&tag=travelRuleInquiry", host, secret);
     }
 
     /**
-     * Encode LNRUL with Bech32 encoding.
+     * Encode LNURL with Bech32 encoding.
      * @param lnurl
      * @return
      */
-    public String encodeUrl(String lnurl) {
+    public static String encodeUrl(String lnurl) {
         byte[] data = convertBytes(lnurl.getBytes(StandardCharsets.US_ASCII), 8, 5, true);
-        return Bech32.encode(Bech32.Encoding.BECH32, "lnurl", data);
+        return Bech32.encode(Bech32.Encoding.BECH32, "lnurl", data).toUpperCase();
     }
 
     /**
@@ -66,7 +47,7 @@ public class Server {
      * @param encoded Encoded LNURL.
      * @return Decoded LNURL.
      */
-    public String decodeUrl(String encoded) {
+    public static String decodeUrl(String encoded) {
         byte[] data = Bech32.decode(encoded).data;
         return new String(convertBytes(data, 5, 8, false));
     }
@@ -76,7 +57,7 @@ public class Server {
      * @param numchars String length.
      * @return Generated hex string.
      */
-    private String getRandomHexString(int numchars){
+    private static String getRandomHexString(int numchars){
         Random r = new Random();
         StringBuffer sb = new StringBuffer();
         while(sb.length() < numchars){
@@ -120,14 +101,5 @@ public class Server {
                 throw new RuntimeException("Non-zero padding");
         }
         return Arrays.copyOfRange(result, 0, bi);
-    }
-
-    public static void main(String[] args) {
-        Server server = new Server("beneficiary.com");
-        String lnurl = server.generateNewUrl();
-        String encodedUrl = server.encodeUrl(lnurl);
-        System.out.println(encodedUrl);
-        String url = server.decodeUrl(encodedUrl);
-        System.out.println(url);
     }
 }
