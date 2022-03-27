@@ -1,0 +1,78 @@
+{
+  "IVMS101": {
+    "originator": {
+      "originatorPersons": [
+        {
+          "naturalPerson": {
+            "name": {
+              "nameIdentifier": [
+                {
+                  "primaryIdentifier": "Post",
+                  "secondaryIdentifier": "Johnny",
+                  "nameIdentifierType": "LEGL"
+                }
+              ]
+            },
+            "geographicAddress": [
+              {
+                "addressType": "GEOG",
+                "streetName": "Potential Street",
+                "buildingNumber": "123",
+                "buildingName": "Cheese Hut",
+                "postcode": "91361",
+                "townName": "Thousand Oaks",
+                "countrySubDivision": "California",
+                "country": "US"
+              }
+            ],
+            "customerIdentification": "1002390"
+          }
+        }
+      ],
+      "accountNumber": [
+        "1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2"
+      ]
+    },
+    "beneficiary": {
+      "beneficiaryPersons": [
+        {
+          "naturalPerson": {
+            "name": {
+              "nameIdentifier": [
+                {
+                  "primaryIdentifier": "MachuPichu",
+                  "secondaryIdentifier": "Freddie",
+                  "nameIdentifierType": "LEGL"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "accountNumber": [
+        "1BVMFfPXJy2TY1x6wm8gow3N5Amw4Etm5h"
+      ]
+    },
+    "originatingVASP": {
+      "legalPerson": {
+        "name": {
+          "nameIdentifier": [
+            {
+              "legalPersonName": "VASP A",
+              "legalPersonNameIdentifierType": "LEGL"
+            }
+          ]
+        },
+        "nationalIdentification": {
+          "nationalIdentifier": "506700T7Z685VUOZL877",
+          "nationalIdentifierType": "LEIX"
+        }
+      }
+    }
+  },
+  "asset": {
+    "slip0044": "ETH"
+  },
+  "amount": 1.0,
+  "callback": "https://originator.com/inquiryResolution?q=1234567890"
+}
