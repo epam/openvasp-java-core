@@ -1,5 +1,9 @@
 package org.openvasp.core.model.lnurl;
 
+/**
+ * SLIP-0044 : Registered coin types for BIP-0044
+ * https://github.com/satoshilabs/slips/blob/master/slip-0044.md
+ */
 public enum Slip0044 {
     BTC(0x80000000, "BTC", "Bitcoin"),
     TESTNET(0x80000001, "", "Testnet (all coins)"),
@@ -973,18 +977,30 @@ public enum Slip0044 {
     FVDC(0xa4465644, "FVDC", "ForumCoin");
 
 
-    private int id;
-    private String code;
-    private String description;
+    private final int coinType;
+    private final String symbol;
+    private final String coin;
 
-    Slip0044(int id, String code, String description) {
-        this.id = id;
-        this.code = code;
-        this.description = description;
+    Slip0044(int coinType, String symbol, String coin) {
+        this.coinType = coinType;
+        this.symbol = symbol;
+        this.coin = coin;
     }
 
     @Override
     public String toString() {
-        return code;
+        return getSymbol();
+    }
+
+    public int getCoinType() {
+        return coinType;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public String getCoin() {
+        return coin;
     }
 }
