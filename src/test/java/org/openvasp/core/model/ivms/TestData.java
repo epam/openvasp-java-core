@@ -65,41 +65,6 @@ public class TestData {
         originator.addOriginatorPersonsItem(originatingPerson);
         originator.addAccountNumbersItem("1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2");
 
-        // Beneficiary
-        // beneficiary 1 name id
-        LegalPersonNameId bene1NameId = new LegalPersonNameId();
-        bene1NameId.setLegalPersonName("ABC Limited");
-        bene1NameId.setLegalPersonNameIdentifierType(LegalPersonNameId.LegalPersonNameIdentifierTypeEnum.LEGL);
-
-        // assign beneficiary 1 name with id
-        LegalPersonName bene1PersonName = new LegalPersonName();
-        bene1PersonName.addNameIdentifiersItem(bene1NameId);
-
-        // beneficiary 1 is a legal person
-        LegalPerson beneficiary1LegalPerson = new LegalPerson();
-        beneficiary1LegalPerson.setName(bene1PersonName);
-
-        // assign beneficiary 1 to person object
-        Person beneficiary1Person = new Person();
-        beneficiary1Person.setLegalPerson(beneficiary1LegalPerson);
-
-        // beneficiary 2 name id
-        LegalPersonNameId bene2NameId = new LegalPersonNameId();
-        bene2NameId.setLegalPersonName("CBA Trading");
-        bene2NameId.setLegalPersonNameIdentifierType(LegalPersonNameId.LegalPersonNameIdentifierTypeEnum.TRAD);
-
-        // assign beneficiary 2 name with id
-        LegalPersonName bene2PersonName = new LegalPersonName();
-        bene2PersonName.addNameIdentifiersItem(bene2NameId);
-
-        // beneficiary 2 is a legal person
-        LegalPerson beneficiary2LegalPerson = new LegalPerson();
-        beneficiary2LegalPerson.setName(bene2PersonName);
-
-        // assign beneficiary 2 to person object
-        Person beneficiary2Person = new Person();
-        beneficiary2Person.setLegalPerson(beneficiary2LegalPerson);
-
         NaturalPersonNameId benNameId = new NaturalPersonNameId();
         benNameId.setPrimaryIdentifier("MachuPichu");
         benNameId.setSecondaryIdentifier("Freddie");

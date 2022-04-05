@@ -18,6 +18,7 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,17 +26,29 @@ import java.util.List;
  * NaturalPersonName
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@Entity
 public class NaturalPersonName {
+  @Id
+  @Column(name = "id", nullable = false)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
   public static final String SERIALIZED_NAME_NAME_IDENTIFIERS = "nameIdentifier";
   @SerializedName(SERIALIZED_NAME_NAME_IDENTIFIERS)
+  @OneToMany(cascade = {CascadeType.ALL})
+  @JoinColumn(name = "name_id")
   private List<NaturalPersonNameId> nameIdentifiers = null;
 
   public static final String SERIALIZED_NAME_LOCAL_NAME_IDENTIFIERS = "localNameIdentifier";
   @SerializedName(SERIALIZED_NAME_LOCAL_NAME_IDENTIFIERS)
+  @OneToMany(cascade = {CascadeType.ALL})
+  @JoinColumn(name = "local_name_id")
   private List<LocalNaturalPersonNameId> localNameIdentifiers = null;
 
   public static final String SERIALIZED_NAME_PHONETIC_NAME_IDENTIFIERS = "phoneticNameIdentifier";
   @SerializedName(SERIALIZED_NAME_PHONETIC_NAME_IDENTIFIERS)
+  @OneToMany(cascade = {CascadeType.ALL})
+  @JoinColumn(name = "phonetic_name_id")
   private List<LocalNaturalPersonNameId> phoneticNameIdentifiers = null;
 
 

@@ -1,9 +1,7 @@
 package org.openvasp.core.model.lnurl;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
-import org.openvasp.core.model.ivms101.*;
+import org.openvasp.core.model.ivms101.IdentityPayload;
 
 /**
  * Model for LNURL body model.

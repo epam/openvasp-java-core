@@ -18,11 +18,19 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.persistence.*;
+
 /**
  * DateAndPlaceOfBirth
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@Entity
 public class DateAndPlaceOfBirth {
+  @Id
+  @Column(name = "id", nullable = false)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
   public static final String SERIALIZED_NAME_DATE_OF_BIRTH = "dateOfBirth";
   @SerializedName(SERIALIZED_NAME_DATE_OF_BIRTH)
   private String dateOfBirth;

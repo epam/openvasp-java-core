@@ -21,13 +21,21 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModelProperty;
+
+import javax.persistence.*;
 import java.io.IOException;
 
 /**
  * NaturalPersonNameId
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@Entity
 public class NaturalPersonNameId {
+  @Id
+  @Column(name = "id", nullable = false)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
   public static final String SERIALIZED_NAME_PRIMARY_IDENTIFIER = "primaryIdentifier";
   @SerializedName(SERIALIZED_NAME_PRIMARY_IDENTIFIER)
   private String primaryIdentifier;

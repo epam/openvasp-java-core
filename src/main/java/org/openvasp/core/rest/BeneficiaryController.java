@@ -1,11 +1,14 @@
 package org.openvasp.core.rest;
 
 import org.openvasp.core.lnurl.Lnurl;
+import org.openvasp.core.model.ivms101.Beneficiary;
+import org.openvasp.core.model.ivms101.IdentityPayload;
+import org.openvasp.core.model.vasp.FundsRequest;
+import org.openvasp.core.model.vasp.VaspAccount;
+import org.openvasp.core.service.VaspService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -14,19 +17,11 @@ import java.net.UnknownHostException;
 @RestController
 public class BeneficiaryController {
     @Autowired
-    Environment environment;
+    VaspService vaspService;
 
-    @GetMapping("/requestFunds")
-    public String requestFunds() {
-        try {
-            String hostname = InetAddress.getLocalHost().getHostName();
-            String port = environment.getProperty("local.server.port");
-            String lnurl = Lnurl.generateNewUrl(hostname, port);
-            String encodedUrl = Lnurl.encodeUrl(lnurl);
-            return encodedUrl;
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
-        }
+    @PostMapping("/requestFunds")
+    public FundsRequest requestFunds(String login) {
+        return vaspService.requestFunds(login);
     }
 
     @GetMapping("/transferConfirmation")

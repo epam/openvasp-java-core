@@ -987,6 +987,8 @@ public enum Slip0044 {
         this.coin = coin;
     }
 
+
+
     @Override
     public String toString() {
         return getSymbol();

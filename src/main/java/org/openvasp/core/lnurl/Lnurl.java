@@ -57,7 +57,7 @@ public class Lnurl {
      * @param numchars String length.
      * @return Generated hex string.
      */
-    private static String getRandomHexString(int numchars){
+    public static String getRandomHexString(int numchars){
         Random r = new Random();
         StringBuffer sb = new StringBuffer();
         while(sb.length() < numchars){
