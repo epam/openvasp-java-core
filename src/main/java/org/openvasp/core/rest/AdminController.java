@@ -13,7 +13,7 @@ public class AdminController {
 
     @PostMapping(path = "/addVaspAccount")
     public VaspAccount addVaspAccount(@RequestBody VaspAccount account) {
-        vaspService.saveAccount(account);
+        vaspService.addVaspAccount(account);
         return account;
     }
 

@@ -20,16 +20,12 @@ public class Lnurl {
 
     /**
      * Generate new LNURL.
-     * @param host Server host.
-     * @param port Server port.
+     * @param baseUrl Bse URL.
      * @return Newly generated LNURL.
      */
-    public static String generateNewUrl(String host, String port) {
+    public static String generateNewUrl(String baseUrl) {
         String secret = Lnurl.getRandomHexString(12);
-        if (port != null) {
-            return String.format("http://%s:%s/api/lnurl?q=%s&tag=travelRuleInquiry", host, port, secret);
-        }
-        return String.format("http://%s/api/lnurl?q=%s&tag=travelRuleInquiry", host, secret);
+        return String.format("%s?q=%s&tag=travelRuleInquiry", baseUrl, secret);
     }
 
     /**

@@ -3,6 +3,8 @@ package org.openvasp.core.model.vasp;
 import org.openvasp.core.model.ivms101.Person;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 public class VaspAccount {
@@ -18,6 +20,14 @@ public class VaspAccount {
     private String accountNumber;
 
     private String lnurl;
+
+    private String lnurlQuery;
+
+    @ElementCollection
+    @JoinTable(name="address_type", joinColumns=@JoinColumn(name="id"))
+    @MapKeyColumn (name="address_type_id")
+    @Column(name="address")
+    private Map<String, String> addresses = new HashMap<>();
 
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "person_id")
@@ -69,5 +79,29 @@ public class VaspAccount {
 
     public void setLnurl(String lnurl) {
         this.lnurl = lnurl;
+    }
+
+    public String getLnurlQuery() {
+        return lnurlQuery;
+    }
+
+    public void setLnurlQuery(String lnurlQuery) {
+        this.lnurlQuery = lnurlQuery;
+    }
+
+    public String getAddress(String type) {
+        return addresses.get(type);
+    }
+
+    public void setAddress(String type, String address) {
+        addresses.put(type, address);
+    }
+
+    public Map<String, String> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(Map<String, String> addresses) {
+        this.addresses = addresses;
     }
 }

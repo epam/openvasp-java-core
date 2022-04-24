@@ -1,4 +1,4 @@
-package org.openvasp.core.model.lnurl;
+package org.openvasp.core.model.vasp;
 
 /**
  * SLIP-0044 : Registered coin types for BIP-0044

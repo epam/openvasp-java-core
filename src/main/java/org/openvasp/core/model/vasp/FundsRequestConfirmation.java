@@ -1,4 +1,4 @@
-package org.openvasp.core.model.lnurl;
+package org.openvasp.core.model.vasp;
 
 import com.google.gson.annotations.SerializedName;
 import org.openvasp.core.model.ivms101.IdentityPayload;
@@ -14,7 +14,7 @@ import org.openvasp.core.model.ivms101.IdentityPayload;
  *     "callback": "https://originator.com/inquiryResolution?q=4585839457"
  * }
  */
-public class LnurlBody {
+public class FundsRequestConfirmation {
     public static final String SERIALIZED_NAME_IVMS101 = "IVMS101";
     @SerializedName(SERIALIZED_NAME_IVMS101)
     private IdentityPayload identityPayload;

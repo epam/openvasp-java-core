@@ -5,18 +5,18 @@ import com.google.gson.GsonBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openvasp.core.model.ivms101.IdentityPayload;
-import org.openvasp.core.model.lnurl.LnurlBody;
-import org.openvasp.core.model.lnurl.Slip0044;
+import org.openvasp.core.model.vasp.FundsRequestConfirmation;
+import org.openvasp.core.model.vasp.Slip0044;
 
 import static org.openvasp.core.model.ivms.TestData.getResource;
 
-public class LnurlBodyTest {
+public class FundsRequestConfirmationTest {
     @Test
-    public void testLnurlBody() {
+    public void testFundsRequestConfirmation() {
         IdentityPayload privateInfo = TestData.getIdentityPayload();
-        LnurlBody body1 = new LnurlBody();
+        FundsRequestConfirmation body1 = new FundsRequestConfirmation();
         body1.setIdentityPayload(privateInfo);
-        LnurlBody.Asset asset = new LnurlBody.Asset();
+        FundsRequestConfirmation.Asset asset = new FundsRequestConfirmation.Asset();
         asset.setSlip0044(Slip0044.ETH);
         body1.setAsset(asset);
         body1.setAmount(1.0);
@@ -24,7 +24,7 @@ public class LnurlBodyTest {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        LnurlBody body2 = gson.fromJson(getResource("json-test-data/ivms101/lnurl-body.json"), LnurlBody.class);
+        FundsRequestConfirmation body2 = gson.fromJson(getResource("json-test-data/ivms101/lnurl-body.json"), FundsRequestConfirmation.class);
         String bodyStr1 = gson.toJson(body1);
         String bodyStr2 = gson.toJson(body2);
 
