@@ -1,11 +1,11 @@
 package org.openvasp.core.rest;
 
+import org.openvasp.core.model.vasp.FundsRequestConfirmation;
 import org.openvasp.core.model.vasp.LnurlResponse;
+import org.openvasp.core.model.vasp.Response;
 import org.openvasp.core.service.VaspService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping(path = "/api")
 @RestController
@@ -14,7 +14,13 @@ public class LnurlController {
     VaspService vaspService;
 
     @GetMapping("/lnurl")
-    public LnurlResponse lnurl(String q, String tag) {
+    public Response lnurl(String q, String tag) {
         return vaspService.getLnurlResponse(q, tag);
+    }
+
+    @PostMapping("/lnurl")
+    public Response lnurl(@RequestBody FundsRequestConfirmation confirmation) {
+        Response response = new Response();
+        return response;
     }
 }

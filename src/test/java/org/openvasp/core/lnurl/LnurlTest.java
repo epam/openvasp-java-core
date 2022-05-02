@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 public class LnurlTest {
     @Test
     void generateLnurl() {
-        String lnurl = Lnurl.generateNewUrl("https://beneficiary.com");
-        String encodedUrl = Lnurl.encodeUrl(lnurl);
+        Lnurl lnurl = Lnurl.generateNewUrl("https://beneficiary.com");
+        String encodedUrl = lnurl.getEncoded();
         String decodedUrl = Lnurl.decodeUrl(encodedUrl);
         Assertions.assertEquals(lnurl, decodedUrl);
     }

@@ -1,5 +1,6 @@
 package org.openvasp.core.lnurl;
 
+import javax.persistence.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Random;
@@ -16,16 +17,32 @@ import java.util.Random;
  *
  * Online encoder/decoder https://lnurl.fiatjaf.com/codec/
  */
+@Entity
 public class Lnurl {
+    @Id
+    @Column(name = "secret", nullable = false)
+    private String secret;
+    private String encoded;
+    private String url;
+
+    public Lnurl() {}
+
+    public Lnurl(String encoded, String secret, String url) {
+        this.encoded = encoded;
+        this.secret = secret;
+        this.url = url;
+    }
 
     /**
      * Generate new LNURL.
      * @param baseUrl Bse URL.
      * @return Newly generated LNURL.
      */
-    public static String generateNewUrl(String baseUrl) {
-        String secret = Lnurl.getRandomHexString(12);
-        return String.format("%s?q=%s&tag=travelRuleInquiry", baseUrl, secret);
+    public static Lnurl generateNewUrl(String baseUrl) {
+        String secret = getRandomHexString(12);
+        String url = String.format("%s?q=%s&tag=travelRuleInquiry", baseUrl, secret);
+        String encoded = encodeUrl(url);
+        return new Lnurl(encoded, secret, url);
     }
 
     /**
@@ -97,5 +114,17 @@ public class Lnurl {
                 throw new RuntimeException("Non-zero padding");
         }
         return Arrays.copyOfRange(result, 0, bi);
+    }
+
+    public String getEncoded() {
+        return encoded;
+    }
+
+    public String getSecret() {
+        return secret;
+    }
+
+    public String getUrl() {
+        return url;
     }
 }

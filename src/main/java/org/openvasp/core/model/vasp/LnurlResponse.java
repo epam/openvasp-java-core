@@ -2,11 +2,7 @@ package org.openvasp.core.model.vasp;
 
 import com.google.gson.annotations.SerializedName;
 
-public class LnurlResponse {
-    public static final String SERIALIZED_NAME_VERSION = "version";
-    @SerializedName(SERIALIZED_NAME_VERSION)
-    private final String version = "1.2.0";
-
+public class LnurlResponse extends Response {
     public static final String SERIALIZED_NAME_ASSET = "asset";
     @SerializedName(SERIALIZED_NAME_ASSET)
     private String asset;

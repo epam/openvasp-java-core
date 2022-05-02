@@ -1,11 +1,8 @@
 package org.openvasp.core.rest;
 
 import org.openvasp.core.lnurl.Lnurl;
-import org.openvasp.core.model.vasp.FundsRequestConfirmation;
-import org.openvasp.core.model.vasp.FundsRequest;
-import org.openvasp.core.model.vasp.TransactionConfirmation;
-import org.openvasp.core.model.vasp.TransferConfirmation;
-import org.openvasp.core.service.VaspService;
+import org.openvasp.core.model.vasp.*;
+import org.openvasp.core.service.FundsProcessingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class OriginatorController {
     @Autowired
-    VaspService vaspService;
+    FundsProcessingService fundsProcessingService;
 
-    @PostMapping("/confirmFundsRequest")
-    public FundsRequestConfirmation confirmFundsRequest(@RequestBody FundsRequest fundsRequest,
-                                                        String login, String type, double amount) {
-        return vaspService.confirmFundsRequest(fundsRequest, login, type, amount);
+    @PostMapping("/sendFunds")
+    public Response sendFunds(@RequestBody FundsRequest fundsRequest, String login, String assetType, double amount) {
+        return fundsProcessingService.sendFunds(fundsRequest, login,assetType, amount);
     }
 
     @PostMapping("/inquiryResolution")

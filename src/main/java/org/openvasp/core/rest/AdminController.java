@@ -17,9 +17,9 @@ public class AdminController {
         return account;
     }
 
-    @PostMapping(path = "/updateVaspAccount")
-    public VaspAccount updateVaspAccountNumber(String login, String accountNumber) {
-        return vaspService.updateAccountNumber(login, accountNumber);
+    @PostMapping(path = "/updateAssetAddress")
+    public VaspAccount updateAssetAddress(String login, String assetType, String assetAddress) {
+        return vaspService.updateAssetAddress(login, assetType, assetAddress);
     }
 
     @GetMapping(path = "/getVaspAccount")

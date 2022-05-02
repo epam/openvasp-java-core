@@ -1,5 +1,6 @@
 package org.openvasp.core.model.vasp;
 
+import org.openvasp.core.lnurl.Lnurl;
 import org.openvasp.core.model.ivms101.Person;
 
 import javax.persistence.*;
@@ -19,15 +20,15 @@ public class VaspAccount {
 
     private String accountNumber;
 
-    private String lnurl;
-
-    private String lnurlQuery;
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "lnurl_secret")
+    private Lnurl lnurl;
 
     @ElementCollection
-    @JoinTable(name="address_type", joinColumns=@JoinColumn(name="id"))
-    @MapKeyColumn (name="address_type_id")
-    @Column(name="address")
-    private Map<String, String> addresses = new HashMap<>();
+    @JoinTable(name="asset_type", joinColumns=@JoinColumn(name="id"))
+    @MapKeyColumn (name="asset_type_id")
+    @Column(name="asset_address")
+    private Map<String, String> assetsAddresses = new HashMap<>();
 
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "person_id")
@@ -73,35 +74,27 @@ public class VaspAccount {
         this.person = person;
     }
 
-    public String getLnurl() {
+    public Lnurl getLnurl() {
         return lnurl;
     }
 
-    public void setLnurl(String lnurl) {
+    public void setLnurl(Lnurl lnurl) {
         this.lnurl = lnurl;
     }
 
-    public String getLnurlQuery() {
-        return lnurlQuery;
+    public String getAssetAddress(String assetType) {
+        return assetsAddresses.get(assetType);
     }
 
-    public void setLnurlQuery(String lnurlQuery) {
-        this.lnurlQuery = lnurlQuery;
+    public void setAssetAddress(String type, String address) {
+        assetsAddresses.put(type, address);
     }
 
-    public String getAddress(String type) {
-        return addresses.get(type);
+    public Map<String, String> getAssetsAddresses() {
+        return assetsAddresses;
     }
 
-    public void setAddress(String type, String address) {
-        addresses.put(type, address);
-    }
-
-    public Map<String, String> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(Map<String, String> addresses) {
-        this.addresses = addresses;
+    public void setAssetsAddresses(Map<String, String> assetsAddresses) {
+        this.assetsAddresses = assetsAddresses;
     }
 }
