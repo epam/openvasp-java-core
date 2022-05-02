@@ -1,6 +1,7 @@
 package org.openvasp.core.rest;
 
 import org.openvasp.core.model.vasp.FundsRequest;
+import org.openvasp.core.service.FundsProcessingService;
 import org.openvasp.core.service.VaspService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BeneficiaryController {
     @Autowired
-    VaspService vaspService;
+    FundsProcessingService fundsProcessingService;
 
     @PostMapping("/requestFunds")
     public FundsRequest requestFunds(String login) {
-        return vaspService.requestFunds(login);
+        return fundsProcessingService.requestFunds(login);
     }
 
 }

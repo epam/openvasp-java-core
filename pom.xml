@@ -169,6 +169,11 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.4.15.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.8</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

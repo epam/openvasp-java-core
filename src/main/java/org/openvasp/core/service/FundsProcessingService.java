@@ -1,6 +1,8 @@
 package org.openvasp.core.service;
 
+import com.google.gson.Gson;
 import org.openvasp.core.lnurl.Lnurl;
+import org.openvasp.core.model.ivms101.Beneficiary;
 import org.openvasp.core.model.ivms101.IdentityPayload;
 import org.openvasp.core.model.ivms101.Originator;
 import org.openvasp.core.model.ivms101.Person;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.nio.charset.StandardCharsets;
 
 @Service
 public class FundsProcessingService extends BaseService {
@@ -28,7 +31,14 @@ public class FundsProcessingService extends BaseService {
         }
     }
 
-    public FundsRequestConfirmation getFundsRequestConfirmation(VaspAccount account, FundsRequest fundsRequest,
+    public void checkOriginator(FundsRequestConfirmation confirmation) {
+        Person originator = confirmation.getIdentityPayload().getOriginator().getOriginatorPersons().get(0);
+        if (!knowYourCustomer.checkCustomer(originator)) {
+            throw new RuntimeException("Bad originator: " + originator);
+        }
+    }
+
+    private FundsRequestConfirmation getFundsRequestConfirmation(VaspAccount account, FundsRequest fundsRequest,
                                                                 double amount, String assetType) {
         Originator originator = new Originator();
         originator.addOriginatorPersonsItem(account.getPerson());
@@ -52,8 +62,39 @@ public class FundsProcessingService extends BaseService {
         VaspAccount account = getVaspAccount(login);
         FundsRequestConfirmation confirmation = getFundsRequestConfirmation(
                 account, fundsRequest, amount, assetType);
-
+        String lnurl = Lnurl.decodeUrl(fundsRequest.getLnurl());
+        Gson gson = new Gson();
+        String payload = gson.toJson(confirmation);
+        postRequest(payload, lnurl);
         return new Response();
     }
 
+    @Transactional
+    public FundsRequest requestFunds(String login) {
+        Lnurl lnurl = Lnurl.generateNewUrl(String.format("%s/lnurl", getBaseApiUrl()));
+        VaspAccount account = getVaspAccount(login);
+        account.setLnurl(lnurl);
+        persistAccount(account);
+        Beneficiary beneficiary = new Beneficiary();
+        beneficiary.addBeneficiaryPersonsItem(account.getPerson());
+        beneficiary.addAccountNumbersItem(account.getAccountNumber());
+        IdentityPayload identityPayload = new IdentityPayload();
+        identityPayload.setBeneficiary(beneficiary);
+        FundsRequest fundsRequest = new FundsRequest();
+        fundsRequest.setLnurl(lnurl.getEncoded());
+        fundsRequest.setIdentityPayload(identityPayload);
+        return fundsRequest;
+    }
+
+    public LnurlResponse getLnurlResponse(String q, String tag) {
+        LnurlResponse response = new LnurlResponse();
+        response.setTag(tag);
+        VaspAccount account = entityManager.createQuery(
+                String.format("select a from VaspAccount a where a.lnurl.secret = '%s'", q),
+                VaspAccount.class).getSingleResult();
+        String assetType = account.getAssetsAddresses().keySet().iterator().next();
+        response.setAddress(account.getAssetAddress(assetType));
+        response.setAsset(assetType);
+        return response;
+    }
 }
