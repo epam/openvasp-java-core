@@ -39,9 +39,10 @@ public class BaseService {
 
     }
 
-    public VaspAccount getVaspAccount(String login) {
+    public VaspAccount getVaspAccount(String accountId) {
         VaspAccount account = entityManager.createQuery(
-                String.format("select a from VaspAccount a where a.login = '%s'", login),
+                String.format("select a from VaspAccount a where a.login = '%s' or a.accountNumber = '%s'",
+                        accountId, accountId),
                 VaspAccount.class).getSingleResult();
         return account;
     }

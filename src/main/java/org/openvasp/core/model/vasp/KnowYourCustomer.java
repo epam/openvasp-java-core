@@ -8,4 +8,9 @@ public class KnowYourCustomer {
     public boolean checkCustomer(Person person) {
         return true;
     }
+
+    public boolean checkAddress(String address) {
+        return true;
+    }
+
 }

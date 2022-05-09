@@ -9,6 +9,7 @@ import org.openvasp.core.model.ivms101.Person;
 import org.openvasp.core.model.vasp.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -96,5 +97,36 @@ public class FundsProcessingService extends BaseService {
         response.setAddress(account.getAssetAddress(assetType));
         response.setAsset(assetType);
         return response;
+    }
+
+    public Response approveTransfer(FundsRequestConfirmation confirmation) {
+        checkOriginator(confirmation);
+        VaspAccount vaspAccount = getVaspAccount(
+                confirmation.getIdentityPayload().getBeneficiary().getAccountNumbers().get(0));
+        TransferApproval approval = new TransferApproval();
+        approval.setApproved(vaspAccount.getAssetAddress(confirmation.getAsset().getSlip0044().toString()));
+        approval.setCallback(String.format("%s/beneficiary/transferConfirmation?q=%s",
+                getBaseApiUrl(), Lnurl.getRandomHexString(10)));
+        Gson gson = new Gson();
+        String payload = gson.toJson(confirmation);
+        postRequest(payload, confirmation.getCallback());
+        Response response = new Response();
+        return response;
+    }
+
+    public Response inquiryResolution(@RequestBody TransferConfirmation transferConfirmation, String q) {
+        knowYourCustomer.checkAddress(transferConfirmation.getPaymentAddress());
+        TransactionConfirmation confirmation = new TransactionConfirmation();
+        confirmation.setTxid(Lnurl.getRandomHexString(32));
+        Gson gson = new Gson();
+        String payload = gson.toJson(confirmation);
+        postRequest(payload, transferConfirmation.getCallback());
+        Response response = new Response();
+        return new Response();
+    }
+
+    public Response transferConfirmation(TransactionConfirmation transactionConfirmation) {
+        Response response = new Response();
+        return new Response();
     }
 }

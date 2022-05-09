@@ -1,16 +1,12 @@
 package org.openvasp.core.service;
 
 import org.openvasp.core.lnurl.Lnurl;
-import org.openvasp.core.model.ivms101.Beneficiary;
-import org.openvasp.core.model.ivms101.IdentityPayload;
-import org.openvasp.core.model.vasp.*;
+import org.openvasp.core.model.vasp.VaspAccount;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 @Service
 public class VaspService extends BaseService {

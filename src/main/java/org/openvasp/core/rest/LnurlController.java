@@ -19,9 +19,6 @@ public class LnurlController {
 
     @PostMapping("/lnurl")
     public Response lnurl(@RequestBody FundsRequestConfirmation confirmation) {
-        fundsProcessingService.checkOriginator(confirmation);
-        confirmation.getCallback();
-        Response response = new Response();
-        return response;
+        return fundsProcessingService.approveTransfer(confirmation);
     }
 }

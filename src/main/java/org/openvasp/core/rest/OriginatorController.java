@@ -18,10 +18,8 @@ public class OriginatorController {
     }
 
     @PostMapping("/inquiryResolution")
-    public TransactionConfirmation inquiryResolution(@RequestBody TransferConfirmation transferConfirmation, String q) {
-        TransactionConfirmation confirmation = new TransactionConfirmation();
-        confirmation.setTxid(Lnurl.getRandomHexString(32));
-        return confirmation;
+    public Response inquiryResolution(@RequestBody TransferConfirmation transferConfirmation, String q) {
+        return fundsProcessingService.inquiryResolution(transferConfirmation, q);
     }
 
 }
