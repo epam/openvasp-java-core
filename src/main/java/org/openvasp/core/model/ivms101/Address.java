@@ -21,6 +21,8 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModelProperty;
+
+import javax.persistence.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +31,13 @@ import java.util.List;
  * Address
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@Entity
 public class Address {
+  @Id
+  @Column(name = "id", nullable = false)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
   /**
    * Gets or Sets addressType
    */
@@ -137,6 +145,9 @@ public class Address {
 
   public static final String SERIALIZED_NAME_ADDRESS_LINE = "addressLine";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE)
+  @ElementCollection
+  @CollectionTable(name="address_line", joinColumns=@JoinColumn(name="id"))
+  @Column(name="address_id")
   private List<String> addressLine = null;
 
   public static final String SERIALIZED_NAME_COUNTRY = "country";

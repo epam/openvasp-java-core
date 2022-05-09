@@ -18,6 +18,7 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,17 +26,29 @@ import java.util.List;
  * NaturalPerson
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@Entity
 public class NaturalPerson {
+  @Id
+  @Column(name = "id", nullable = false)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @OneToOne(cascade = {CascadeType.ALL})
+  @JoinColumn(name = "name_id")
   private NaturalPersonName name;
 
   public static final String SERIALIZED_NAME_GEOGRAPHIC_ADDRESSES = "geographicAddress";
   @SerializedName(SERIALIZED_NAME_GEOGRAPHIC_ADDRESSES)
+  @OneToMany(cascade = {CascadeType.ALL})
+  @JoinColumn(name = "geographic_address_id")
   private List<Address> geographicAddresses = null;
 
   public static final String SERIALIZED_NAME_NATIONAL_IDENTIFICATION = "nationalIdentification";
   @SerializedName(SERIALIZED_NAME_NATIONAL_IDENTIFICATION)
+  @OneToOne(cascade = {CascadeType.ALL})
+  @JoinColumn(name = "national_id")
   private NationalIdentification nationalIdentification;
 
   public static final String SERIALIZED_NAME_CUSTOMER_IDENTIFICATION = "customerIdentification";
@@ -44,6 +57,8 @@ public class NaturalPerson {
 
   public static final String SERIALIZED_NAME_DATE_AND_PLACE_OF_BIRTH = "dateAndPlaceOfBirth";
   @SerializedName(SERIALIZED_NAME_DATE_AND_PLACE_OF_BIRTH)
+  @OneToOne(cascade = {CascadeType.ALL})
+  @JoinColumn(name = "birth_id")
   private DateAndPlaceOfBirth dateAndPlaceOfBirth;
 
   public static final String SERIALIZED_NAME_COUNTRY_OF_RESIDENCE = "countryOfResidence";

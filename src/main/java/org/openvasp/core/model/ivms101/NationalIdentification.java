@@ -23,13 +23,20 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModelProperty;
 import org.jetbrains.annotations.Nullable;
 
+import javax.persistence.*;
 import java.io.IOException;
 
 /**
  * NationalIdentification
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@Entity
 public class NationalIdentification {
+  @Id
+  @Column(name = "id", nullable = false)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
   public static final String SERIALIZED_NAME_NATIONAL_IDENTIFIER = "nationalIdentifier";
   @SerializedName(SERIALIZED_NAME_NATIONAL_IDENTIFIER)
   private String nationalIdentifier;

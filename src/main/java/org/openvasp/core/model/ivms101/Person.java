@@ -18,17 +18,29 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.persistence.*;
+
 /**
  * Person
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@Entity
 public class Person {
+  @Id
+  @Column(name = "id", nullable = false)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
   public static final String SERIALIZED_NAME_NATURAL_PERSON = "naturalPerson";
   @SerializedName(SERIALIZED_NAME_NATURAL_PERSON)
+  @OneToOne(cascade = {CascadeType.ALL})
+  @JoinColumn(name = "natural_person_id")
   private NaturalPerson naturalPerson;
 
   public static final String SERIALIZED_NAME_LEGAL_PERSON = "legalPerson";
   @SerializedName(SERIALIZED_NAME_LEGAL_PERSON)
+  @OneToOne(cascade = {CascadeType.ALL})
+  @JoinColumn(name = "legal_person_id")
   private LegalPerson legalPerson;
 
 
